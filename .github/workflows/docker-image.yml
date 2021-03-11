@@ -16,7 +16,7 @@ jobs:
     - name: Checkout
       uses: mr-smithers-excellent/docker-build-push@v3
       with:
-          image: ${{ github.repository }}}/apipoi:${{github.sha}}
+          image: ${{ github.repository }}/apipoi:${{github.sha}}
           registry: docker.pkg.github.com
           githubOrg: OpenHackEquipo3
           username: ${{ github.actor }}
