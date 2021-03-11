@@ -1,37 +1,27 @@
-name: publish
+name: Docker Image CI
 
-
-
-on: [push]
-
-
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
 
-  publish-hello-world-image:
+  build:
 
     runs-on: ubuntu-latest
 
-
-
     steps:
-
-      - uses: actions/checkout@v2
-
-
-
-      - name: Build the hello-world Docker image
-
-        run: |
-
-          echo $CR_PAT | docker login ghcr.io -u ${{github.actor}} --password-stdin
-
-          docker build . --tag ghcr.io/jonashackt/hello-world:latest
-
-          docker run ghcr.io/jonashackt/hello-world:latest
-
-          docker push ghcr.io/jonashackt/hello-world:latest
-
-        env:
-
-          CR_PAT: ${{ secrets.CR_PAT }}
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v1
+      with:
+        push: true
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com/PabloCSixOH/openhackequipo3/apiimage:${{github.sha}}
+        path: poi/web
