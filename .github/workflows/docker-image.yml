@@ -25,4 +25,10 @@ jobs:
     - name: Build container image
       uses: docker/build-push-action@v1
       with:
-        registry: docker.pkg.github.com/${{ github.repository }}/API-POI:${{steps.PRNUMBER.outputs.pr}}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: ${{ github.repository }}/octo-image
+        tag_with_sha: true
+        tag_with_ref: true
+        name: ${{ github.actor }}/ ${{ github.repository }}/PI-POI:${{steps.PRNUMBER.outputs.pr}}
