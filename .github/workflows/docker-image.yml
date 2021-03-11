@@ -26,4 +26,3 @@ jobs:
       uses: docker/build-push-action@v1
       with:
         registry: docker.pkg.github.com/${{ github.repository }}/API-POI:${{steps.PRNUMBER.outputs.pr}}
-        repository: ${{ github.repository }}/API-POI
