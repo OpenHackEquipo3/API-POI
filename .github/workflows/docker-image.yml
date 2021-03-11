@@ -21,8 +21,8 @@ jobs:
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
+        #registry: docker.pkg.github.com
         path: poi/web
-        tags: ${{github.sha}}
+        tags: openhackequipo3/api-poi/apiimage:${{github.sha}}
         push: true
 
