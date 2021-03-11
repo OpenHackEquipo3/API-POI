@@ -39,7 +39,7 @@ jobs:
             fi
             
     - name: Test PR      
-      run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"  poi/poi.sln
+      run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{$file_name}};Title=${{$title}};"  poi/poi.sln
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
