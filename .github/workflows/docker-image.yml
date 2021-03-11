@@ -21,6 +21,6 @@ jobs:
       with:
         registry: docker.pkg.github.com
         path: poi/web
-        tags: api-poi, apipoiimage:${{github.sha}}
+        tags: ${{github.sha}}
         push: true
 
