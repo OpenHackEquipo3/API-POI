@@ -27,4 +27,4 @@ jobs:
         tag_with_sha: true
         tag_with_ref: true
         path: poi/web
-        tags: openhackequipo3/api-poi/imagen1
+        tags: openhackequipo3/api-poi/imagen1:1
