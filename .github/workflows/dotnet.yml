@@ -27,8 +27,8 @@ jobs:
       - name: Test PR
         run: dotnet test poi/poi.sln --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
         env:
-          title: Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
-          file_name: TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
+          title: "Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
+          file_name: "TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
           
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
@@ -37,8 +37,8 @@ jobs:
           name: "Test Run"
           path: ${{github.workspace}}/${{env.file_name}}
         env:
-          title: Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
-          file_name: TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
+          title: "Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
+          file_name: "TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
 
       - name: comment PR
         uses: machine-learning-apps/pr-comment@master
@@ -47,5 +47,5 @@ jobs:
           path: ${{env.file_name}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          title: Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
-          file_name: TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
+          title: "Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
+          file_name: "TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
