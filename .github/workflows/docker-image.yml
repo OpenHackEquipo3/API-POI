@@ -22,8 +22,6 @@ jobs:
       uses: docker/build-push-action@v1
       with:
         push: true
-        secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com/openhackequipo3/apiimage:${{github.sha}}
