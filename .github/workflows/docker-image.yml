@@ -17,13 +17,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
-    - name: Build container image
+    - name: Build and push
+      id: docker_build
       uses: docker/build-push-action@v1
       with:
+        push: true
+        tags: apiimage:${{github.sha}}
+        secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         path: poi/web
-        name: apiimage
-        tags: ${{github.sha}}
-        push: true
+        
+        
