@@ -28,18 +28,11 @@ jobs:
       - name: Set Test Title
 
         run: |
-          if ${{ github.event_name == 'pull_request' }}
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-          then
-            echo "title::Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
-            echo "file_name::TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
-          else
-            echo "title::Test Run ${{github.run_number}}"
-            echo "file_name::TestReport.${{github.run_number}}.md"
-          fi
+             GITHUB_ENV.title::Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
+             GITHUB_ENV.file_name::TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
 
       - name: Test PR
-        run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{file_name}};Title=${{title}};"  poi/poi.sln
+        run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"  poi/poi.sln
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
