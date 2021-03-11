@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      # set pr number, if it's a pr build
+      
+    - name: set pr build number
+      id: PRNUMBER
+      if: ${{ github.event_name == 'pull_request' }}
+      uses: kkak10/pr-number-action@v1.3
+      
+    - name: Build container image
+      uses: docker/build-push-action@v1
+      with:
+        registry: docker.pkg.github.com/${{ github.repository }}/API-POI:${{steps.PRNUMBER.outputs.pr}}
+        repository: ${{ github.repository }}/API-POI
