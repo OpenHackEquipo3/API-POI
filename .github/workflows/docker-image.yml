@@ -23,7 +23,7 @@ jobs:
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com/${{ github.actor }}/${{ github.repository }}/API-POI:${{ github.run_number }}
+        registry: docker.pkg.github.com/${{ github.actor }}/openhackequipo3/API-POI:${{ github.run_number }}
         tag_with_sha: true
         tag_with_ref: true
         path: poi/web/DockerFile
