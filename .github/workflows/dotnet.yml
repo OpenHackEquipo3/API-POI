@@ -25,7 +25,7 @@ jobs:
         uses: kkak10/pr-number-action@v1.3
 
       - name: Test PR
-        run: dotnet test --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"  poi/poi.sln
+        run: dotnet test poi/poi.sln --no-restore --no-build --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
         env:
           title: Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
           file_name: TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
