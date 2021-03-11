@@ -22,7 +22,7 @@ jobs:
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com/apiimage
+        registry: docker.pkg.github.com
         path: poi/web
         tags: ${{github.sha}}
         push: true
