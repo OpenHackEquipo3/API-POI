@@ -23,7 +23,7 @@ jobs:
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com -t juantrinidad
+        registry: docker.pkg.github.com
         tag_with_sha: true
         tag_with_ref: true
         path: poi/web/DockerFile
