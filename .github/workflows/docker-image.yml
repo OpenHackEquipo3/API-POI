@@ -26,7 +26,7 @@ jobs:
             GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com/openhackequipo3/api-poi/apiimage:${{github.sha}}
+        registry: docker.pkg.github.com/openhackequipo3/apiimage:${{github.sha}}
         path: poi/web
         
         
