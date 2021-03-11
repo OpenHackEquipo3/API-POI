@@ -18,7 +18,7 @@ jobs:
       with:
           image: ${{github.workspace}}/apipoi:${{github.sha}}
           registry: docker.pkg.github.com
-          dockerfile: poi/web
+          dockerfile: poi/web/Dockerfile
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }} 
 
