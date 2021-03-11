@@ -2,28 +2,66 @@ name: .NET
 
 on:
   push:
-    branches: [ main, develop_branch ] 
+    branches: [main, develop_branch]
   pull_request:
-    branches:  master 
+    branches: master
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-    - name: Restore dependencies
-      run: dotnet restore poi/poi.sln
-    - name: Build
-      run: dotnet build --no-restore poi/poi.sln
-    - name: Test with dotnet
-      run: dotnet test poi/poi.sln --logger trx --results-directory "TestResults"
-    - name: Upload dotnet test results
-      uses: actions/upload-artifact@v2
-      with:
-        name: dotnet-results
-        path: TestResults
-      # Use always() to always run this step to publish test results when there are test failures
-      if: ${{ always() }}
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+      - name: Restore dependencies
+        run: dotnet restore poi/poi.sln
+      - name: Build
+        run: dotnet build --no-restore poi/poi.sln
+        
+      - uses: actions/github-script@0.9.0
+        if: failure()
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            let body = "${{ env.build_name }} Worflow Failure \n Build Number: ${{ github.run_number }} \n Build Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} \n SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) \n";
+            github.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "${{ env.build_name }} Workflow ${{ github.run_number }} Failed! ",
+              body: body
+            });
+        env:
+          build_name: "API-POI"
 
+
+        # set pr number, if it's a pr build
+      - name: set pr build number
+        id: PRNUMBER
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: kkak10/pr-number-action@v1.3
+
+      - name: Test PR
+        run: dotnet test poi/poi.sln --no-restore --no-build --logger:"trx;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};" 
+        env:
+          title: "Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
+          file_name: "TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
+          
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        if: ${{always()}}
+        with:
+          name: "Test Run"
+          path: ${{github.workspace}}/${{env.file_name}}
+        env:
+          title: "Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
+          file_name: "TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
+
+      - name: comment PR
+        uses: machine-learning-apps/pr-comment@master
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          path: ${{env.file_name}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          title: "Test Run for PR ${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
+          file_name: "TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
