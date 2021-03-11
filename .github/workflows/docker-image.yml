@@ -1,4 +1,4 @@
-name: Docker Image CI
+Vname: Docker Image CI
 
 on:
   push:
@@ -14,11 +14,17 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: mr-smithers-excellent/docker-build-push@v3
+      uses: actions/checkout@v2
+      # set pr number, if it's a pr build
+      
+      
+    - name: Build container image
+      uses: docker/build-push-action@v1
       with:
-          image: ${{ github.repository }}/apipoi:${{github.sha}}
-          registry: docker.pkg.github.com
-          githubOrg: OpenHackEquipo3
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }} 
-
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        tag_with_sha: true
+        tag_with_ref: true
+        path: poi/web
+        tags: openhackequipo3, api-poi, imagen1, ${{github.sha}}
