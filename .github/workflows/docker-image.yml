@@ -19,6 +19,8 @@ jobs:
     - name: Build container image
       uses: docker/build-push-action@v1
       with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         path: poi/web
         tags: ${{github.sha}}
