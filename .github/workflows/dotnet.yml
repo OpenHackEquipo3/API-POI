@@ -26,8 +26,10 @@ jobs:
 
       # set report file and title 
     - name: Set Test Title
+      
       run: | 
             if ${{ github.event_name == 'pull_request' }}
+            ACTIONS_ALLOW_UNSECURE_COMMANDS: true
             then
               echo "::set-env name=title::Test Run for PR #${{steps.PRNUMBER.outputs.pr}} (${{github.run_number}})"
               echo "::set-env name=file_name::TestReport.${{steps.PRNUMBER.outputs.pr}}.${{github.run_number}}.md"
