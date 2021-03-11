@@ -30,4 +30,3 @@ jobs:
         registry: docker.pkg.github.com
         tag_with_sha: true
         tag_with_ref: true
-        path: ${{ github.actor }}/ ${{ github.repository }}/PI-POI:${{steps.PRNUMBER.outputs.pr}}
