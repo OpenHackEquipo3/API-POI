@@ -19,7 +19,8 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
-        repository: /${{github.actor}}/api-poi/api-poi-docker:${{github.sha}}
+        tags: ${{github.actor}}/api-poi-docker:${{github.sha}}
+        repository: /${{github.actor}}/api-poi/
         path: poi/web
         push: true
         pull: true
