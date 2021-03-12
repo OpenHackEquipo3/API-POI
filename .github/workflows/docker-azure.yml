@@ -43,15 +43,15 @@ jobs:
       - name: 'Set app service'
         uses: azure/appservice-settings@v1
         with:
-          app-name: acr-sp-openhack
-          slot-name: 'staging'  # Optional and needed only if the settings have to be configured on the specific deployment slot
+          app-name: openhack7l436t69poi
+          slot-name: staging  # Optional and needed only if the settings have to be configured on the specific deployment slot
           general-settings-json: '{"alwaysOn": "false", "webSocketsEnabled": "true"}' #'General configuration settings as Key Value pairs'
       - run: echo "The webapp-url is ${{ steps.settings.outputs.webapp-url }}" 
 
       - name: 'Deploy to Azure Web App for Container'
         uses: azure/webapps-deploy@v2
         with: 
-          app-name: acr-sp-openhack
+          app-name: openhack7l436t69poi
           images: openhack7l436t69acr.azurecr.io/devopsoh/api-poi:${{ steps.vars.outputs.tag}}
 
 
