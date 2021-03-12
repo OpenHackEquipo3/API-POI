@@ -16,6 +16,8 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v2
       with:
+        secrets: | 
+          GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
         context: ./poi/web/
         username: pablocsixoh # ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
