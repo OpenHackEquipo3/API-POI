@@ -11,5 +11,5 @@ jobs:
     - name: Build and push
       run: |
         docker build . --tag docker.pkg.github.com/pablocdixoh/api-poi/poi/web/dockerfile/api-poi:${{github.sha}}
-        docker run docker.pkg.github.com/pablocdixoh/api-poi/api-poi:${{github.sha}}
-        docker push docker.pkg.github.com/pablocdixoh/api-poi/api-poi:${{github.sha}}
+        docker run docker.pkg.github.com/pablocdixoh/api-poi/poi/web/dockerfile/api-poi:${{github.sha}}
+        docker push docker.pkg.github.com/pablocdixoh/api-poi/poi/web/dockerfile/api-poi:${{github.sha}}
