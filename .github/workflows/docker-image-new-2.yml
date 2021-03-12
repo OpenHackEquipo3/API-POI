@@ -27,6 +27,6 @@ jobs:
         pull: true
         push: true
         build-args: |
-          registry: docker.pkg.github.com/openhackequipo3/apiimage:${{github.sha}}
+          registry: docker.pkg.github.com/pablocdixoh/api-poi/poi/web/dockerfile/api-poi:${{github.sha}}
           path: poi/web
-        tags: openhackequipo3/apiimage:${{github.sha}}
+        tags: openhackequipo3/api-poi:${{github.sha}}
