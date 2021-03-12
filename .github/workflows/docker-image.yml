@@ -20,6 +20,13 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
+    - name: Lowercase repository name 
+      run: | 
+        echo "REPO=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV 
+    - name: Short the sha to 7 characters only 
+      id: vars 
+      run: echo ::set-output name=tag::$(echo ${GITHUB_SHA::7})
+              
     - name: Build and push
       id: docker_build
       uses: docker/build-push-action@v2
