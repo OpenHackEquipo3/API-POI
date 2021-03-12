@@ -16,7 +16,7 @@ jobs:
         with:
           registry: openhack7l436t69acr.azurecr.io
           username: 572087c0-1181-4f20-b4fa-7a85536c508c
-          password: Pz~cMxSYjz1Gq~e8GAG1y3Q-ZTC2_5n0cK
+          password: GE7lxUb4lSjSHeJTjg5eBYucX_UyeiThF_
           
       - name: Lowercase repository name 
         run: | 
@@ -30,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./poi/web/
-          tags: openhack7l436t69acr.azurecr.io/openhack7l436t69acr:${{ steps.vars.outputs.tag}}
+          tags: openhack7l436t69acr.azurecr.io/devopsoh/api-poi:${{ steps.vars.outputs.tag}}
           file: ./poi/web/Dockerfile
           push: true
           pull: true
