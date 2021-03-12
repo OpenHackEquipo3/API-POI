@@ -30,7 +30,7 @@ jobs:
         #username: pablocsixoh # ${{ github.actor }}
         #password: ${{ secrets.GITHUB_TOKEN }}
         #registry: docker.pkg.github.com/pablocsixoh/api-poi/api-poi-docker:${{github.sha}}
-        tags: docker.pkg.github.com/pablocsixoh/api-poi/api-poi-docker:${{github.sha}}
+        tags: docker.pkg.github.com/PabloCSixOH/api-poi/api-poi-docker:${{github.sha}}
         #repository: /api-poi/
         file: ./poi/web/Dockerfile
         push: true
