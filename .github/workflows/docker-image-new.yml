@@ -10,7 +10,6 @@ jobs:
       uses: actions/checkout@v2
     - name: Build and push
       run: |
-        echo docker login ghcr.io -u richardopenhack --password-stdin
-        docker build . --tag docker.pkg.github.com/pablocdixoh/api-poi/api-poi:${{github.sha}}
+        docker build . --tag docker.pkg.github.com/pablocdixoh/api-poi/poi/web/Dockerfile/api-poi:${{github.sha}}
         docker run docker.pkg.github.com/pablocdixoh/api-poi/api-poi:${{github.sha}}
         docker push docker.pkg.github.com/pablocdixoh/api-poi/api-poi:${{github.sha}}
