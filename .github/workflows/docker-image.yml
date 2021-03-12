@@ -16,11 +16,11 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v2
       with:
-        username: ${{ github.actor }}
+        username: pablocsixoh # ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        tags: ${{github.actor}}/api-poi-docker:${{github.sha}}
-        repository: /richardopenhack/api-poi/
+        registry: ${{ secrets.DOCKER_REGISTRY_URL }}  # docker.pkg.github.com
+        tags: pablocsixoh/api-poi-docker:${{github.sha}}
+        repository: /pablocsixoh/api-poi/
         path: poi/web
         push: true
         pull: true
