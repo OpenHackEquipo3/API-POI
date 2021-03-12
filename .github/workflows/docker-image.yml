@@ -16,13 +16,13 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v2
       with:
-        context: .
+        context: ./poi/web/
         username: pablocsixoh # ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com/pablocsixoh/api-poi/api-poi-docker:${{github.sha}}
         tags: pablocsixoh/api-poi-docker:${{github.sha}}
         repository: /api-poi/
-        file: ./poi/web/
+        file: ./poi/web/Dockerfile
         push: true
         pull: true
         
