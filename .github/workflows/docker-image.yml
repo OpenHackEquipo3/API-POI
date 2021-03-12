@@ -11,19 +11,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v1
+      
+    -  name: Login to GitHub Container Registry
+       uses: docker/login-action@v1
+       with:
+          registry: ${{ secrets.DOCKER_REGISTRY_URL }} # -> docker.pkg.github.com
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+          
     - name: Build and push
       id: docker_build
       uses: docker/build-push-action@v2
       with:
-        secrets: | 
-          GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+        #secrets: | 
+          #GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
         context: ./poi/web/
-        username: pablocsixoh # ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com/pablocsixoh/api-poi/api-poi-docker:${{github.sha}}
+        #username: pablocsixoh # ${{ github.actor }}
+        #password: ${{ secrets.GITHUB_TOKEN }}
+        #registry: docker.pkg.github.com/pablocsixoh/api-poi/api-poi-docker:${{github.sha}}
         tags: pablocsixoh/api-poi-docker:${{github.sha}}
-        repository: /api-poi/
+        #repository: /api-poi/
         file: ./poi/web/Dockerfile
         push: true
         pull: true
