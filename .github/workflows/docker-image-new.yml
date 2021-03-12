@@ -1,0 +1,18 @@
+name: Docker Image CI
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build and push
+      run: |
+        echo $CR_PAT | docker login ghcr.io -u richardopenhack --password-stdin
+        docker build . --tag ghcr.io/openhackequipo3/api-poi/my_docker_image:latest
+        docker run ghcr.io/openhackequipo3/api-poi/my_docker_image:latest
+        docker push ghcr.io/openhackequipo3/api-poi/my_docker_image:latest
+      env:
+        CR_PAT: ${{ secrets.CR_PAT }}
