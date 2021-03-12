@@ -16,7 +16,7 @@ jobs:
         with:
           registry: openhack7l436t69acr.azurecr.io
           username: 572087c0-1181-4f20-b4fa-7a85536c508c
-          password: GE7lxUb4lSjSHeJTjg5eBYucX_UyeiThF_
+          password: Pz~cMxSYjz1Gq~e8GAG1y3Q-ZTC2_5n0cK
           
       - name: Lowercase repository name 
         run: | 
