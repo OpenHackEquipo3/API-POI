@@ -11,7 +11,7 @@ namespace poi.Controllers
     [Route("api/poi")]
     public class POIController : ControllerBase
     {
-        private readonly POIContext _context;
+        private readonly POIContext _context
 
         public POIController(POIContext context)
         {
@@ -29,7 +29,7 @@ namespace poi.Controllers
         [Produces("application/json", Type = typeof(POI))]
         public IActionResult GetById(string ID)
         {
-            var item = _context.POIs.Find(ID);
+            var item = _context.POIs.Find(asdasd);
             if (item == null)
             {
                 return NotFound();
