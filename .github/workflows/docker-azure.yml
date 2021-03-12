@@ -1,1 +1,28 @@
+name: ci
 
+on:
+  push:
+    branches: master
+
+jobs:
+  login:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Login to ACR
+        uses: docker/login-action@v1
+        with:
+          registry: <registry-name>.azurecr.io
+          username: ${{ secrets.AZURE_CLIENT_ID }}
+          password: ${{ secrets.AZURE_CLIENT_SECRET }}
+          
+          
+          
+          # echo "Building API-POI image..."
+          # echo "Changing directory to $GITOHTEAMDIRPATH/apis/poi/web..."
+          # cd "$GITOHTEAMDIRPATH/apis/poi/web"
+          # az acr build --image "devopsoh/api-poi:${BASEIMAGETAG}" --registry $ACRNAME --file Dockerfile
+          
+          # If using Azure Container Registry
+          # <Azure Container Registry URI>/<ACR_repository_name>:<Revision Number> 
+          # where the ACR_repository_name follows the naming convention devopsoh/<image_name>:<tag>
