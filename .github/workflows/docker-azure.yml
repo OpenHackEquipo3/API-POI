@@ -52,6 +52,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with: 
           app-name: openhack7l436t69poi
+          slot-name: 'staging'
           images: openhack7l436t69acr.azurecr.io/devopsoh/api-poi:${{ steps.vars.outputs.tag}}
 
 
