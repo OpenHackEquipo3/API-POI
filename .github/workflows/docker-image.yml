@@ -18,7 +18,7 @@ jobs:
       with:
         username: pablocsixoh # ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: ${{ secrets.DOCKER_REGISTRY_URL }}  # docker.pkg.github.com
+        registry: docker.pkg.github.com
         tags: pablocsixoh/api-poi-docker:${{github.sha}}
         repository: /pablocsixoh/api-poi/
         path: poi/web
