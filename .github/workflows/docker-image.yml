@@ -20,7 +20,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         tags: ${{github.actor}}/api-poi-docker:${{github.sha}}
-        repository: /${{github.actor}}/api-poi/
+        repository: /richardopenhack/api-poi/
         path: poi/web
         push: true
         pull: true
