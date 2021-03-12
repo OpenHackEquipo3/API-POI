@@ -11,6 +11,6 @@ jobs:
     - name: Build and push
       run: |
         echo docker login ghcr.io -u richardopenhack --password-stdin
-        docker build . --tag docker.pkg.github.com/${{github.actor}}/api-poi/api-poi:${{github.sha}}
-        docker run docker.pkg.github.com/${{github.actor}}/api-poi/api-poi:${{github.sha}}
-        docker push docker.pkg.github.com/${{github.actor}}/api-poi/api-poi:${{github.sha}}
+        docker build . --tag docker.pkg.github.com/pablocdixoh/api-poi/api-poi:${{github.sha}}
+        docker run docker.pkg.github.com/pablocdixoh/api-poi/api-poi:${{github.sha}}
+        docker push docker.pkg.github.com/pablocdixoh/api-poi/api-poi:${{github.sha}}
