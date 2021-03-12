@@ -34,10 +34,23 @@ jobs:
           file: ./poi/web/Dockerfile
           push: true
           pull: true
+          
+      - name: 'Azure Login'
+      - uses: azure/login@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          
+      - name: 'Set app service'
+      - uses: azure/appservice-settings@v1
+        with:
+          app-name: 'openhack7l436t69poi'
+          slot-name: 'staging'  # Optional and needed only if the settings have to be configured on the specific deployment slot
+      - run: echo "The webapp-url is ${{ steps.settings.outputs.webapp-url }}" 
 
-            # echo "Building API-POI image..."
-            # echo "Changing directory to $GITOHTEAMDIRPATH/apis/poi/web..."
-            # cd "$GITOHTEAMDIRPATH/apis/poi/web"
-            # az acr build --image "devopsoh/api-poi:${BASEIMAGETAG}" --registry $ACRNAME --file Dockerfile
+      - name: 'Deploy to Azure Web App for Container'
+        uses: azure/webapps-deploy@v2
+        with: 
+          app-name: 'openhack7l436t69poi'
+          images: openhack7l436t69acr.azurecr.io/devopsoh/api-poi:${{ steps.vars.outputs.tag}}
 
 
