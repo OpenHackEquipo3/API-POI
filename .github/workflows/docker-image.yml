@@ -23,5 +23,3 @@ jobs:
         path: poi/web
         push: true
         pull: true
-    - name: Image digest
-      run: echo ${{ steps.docker_build.outputs.digest }}
