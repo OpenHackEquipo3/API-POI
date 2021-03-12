@@ -36,12 +36,12 @@ jobs:
           pull: true
           
       - name: 'Azure Login'
-      - uses: azure/login@v1
+        uses: azure/login@v1
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
           
       - name: 'Set app service'
-      - uses: azure/appservice-settings@v1
+        uses: azure/appservice-settings@v1
         with:
           app-name: 'openhack7l436t69poi'
           slot-name: 'staging'  # Optional and needed only if the settings have to be configured on the specific deployment slot
